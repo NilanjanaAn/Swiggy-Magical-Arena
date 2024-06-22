@@ -1,5 +1,7 @@
 package com.swiggy.magicalarena;
 
+import com.swiggy.magicalarena.util.Dice;
+
 public class Match {
     Player player1;
     Player player2;
@@ -26,6 +28,23 @@ public class Match {
     }
 
     private void turn(Player attacker, Player defender) {
-        // gameplaying logic
+        int attackerRoll = Dice.rollDice();
+        int defenderRoll = Dice.rollDice();
+
+        int attackDamage = attackerRoll * attacker.getAttack();
+        int defendingStrength = defenderRoll * defender.getStrength();
+        int absoluteImpact = Math.min(attackDamage - defendingStrength, defender.getHealth());
+
+        System.out.println("Player #" + attacker.getId() + " rolls " + attackerRoll + ". Player #" + defender.getId() + " rolls " + defenderRoll + ".");
+        System.out.println("Attack damage is " + attackerRoll + " x " + attacker.getAttack() + " = " + attackDamage + "." +
+                " Defending strength is " + defenderRoll + " x " + defender.getStrength() + " = " + defendingStrength + ".");
+
+        if (absoluteImpact <= 0)
+            System.out.println("Player #" + defender.getId() + "'s health remains " + defender.getHealth() + ".");
+        else {
+            defender.setHealth(defender.getHealth() - absoluteImpact);
+            System.out.println("Player #" + defender.getId() + "'s health reduced by " + absoluteImpact + " to " + defender.getHealth() + ".");
+        }
+
     }
 }
