@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public enum PlayerManager {
     INSTANCE;
-    private Map<Integer, Player> players;
+    private final Map<Integer, Player> players;
     private int playerCount = 0;
 
     PlayerManager() {

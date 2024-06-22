@@ -12,8 +12,9 @@ public class Match {
     }
 
     public void conductMatch() {
-        Player winner = null;
-        winner = simulateMatch(player1.getHealth() <= player2.getHealth());
+        if (checkValidMatchup()) {
+            Player winner = simulateMatch(player1.getHealth() <= player2.getHealth());
+        }
     }
 
     private Player simulateMatch(boolean player1sTurn) {
@@ -45,6 +46,19 @@ public class Match {
             defender.setHealth(defender.getHealth() - absoluteImpact);
             System.out.println("Player #" + defender.getId() + "'s health reduced by " + absoluteImpact + " to " + defender.getHealth() + ".");
         }
+    }
 
+    private boolean checkValidMatchup() {
+        if (!player1.isAlive() || !player2.isAlive()) {
+            System.out.println("One or both players selected are not alive.");
+            return false;
+        }
+        if (player1.getAttack() * 6 <= player2.getStrength() &&
+                player2.getAttack() * 6 <= player1.getStrength()) {
+            System.out.println("Invalid matchup," +
+                    " Player #" + player1.getId() + " and Player #" + player2.getId() + " cannot inflict damage on each other.");
+            return false;
+        }
+        return true;
     }
 }
