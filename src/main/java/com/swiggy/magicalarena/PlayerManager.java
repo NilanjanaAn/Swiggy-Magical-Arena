@@ -15,6 +15,10 @@ public enum PlayerManager {
         players = new HashMap<>();
     }
 
+    public int getPlayerCount() {
+        return playerCount;
+    }
+
     public void registerPlayer(Player player) {
         player.setId(++playerCount);
         players.put(playerCount, player);

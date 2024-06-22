@@ -14,10 +14,15 @@ public class Match {
     public void conductMatch() {
         if (checkValidMatchup()) {
             Player winner = simulateMatch(player1.getHealth() <= player2.getHealth());
+            System.out.println("\nThe winner is Player #" + winner.getId() + ".");
         }
     }
 
     private Player simulateMatch(boolean player1sTurn) {
+        if (player1sTurn)
+            System.out.println("\nPlayer #" + player1.getId() + " attacks first.");
+        else
+            System.out.println("\nPlayer #" + player2.getId() + " attacks first.");
         while (player1.isAlive() && player2.isAlive()) {
             if (player1sTurn)
                 turn(player1, player2);
@@ -36,7 +41,7 @@ public class Match {
         int defendingStrength = defenderRoll * defender.getStrength();
         int absoluteImpact = Math.min(attackDamage - defendingStrength, defender.getHealth());
 
-        System.out.println("Player #" + attacker.getId() + " rolls " + attackerRoll + ". Player #" + defender.getId() + " rolls " + defenderRoll + ".");
+        System.out.println("\nPlayer #" + attacker.getId() + " attacks and rolls " + attackerRoll + ". Player #" + defender.getId() + " defends and rolls " + defenderRoll + ".");
         System.out.println("Attack damage is " + attackerRoll + " x " + attacker.getAttack() + " = " + attackDamage + "." +
                 " Defending strength is " + defenderRoll + " x " + defender.getStrength() + " = " + defendingStrength + ".");
 
