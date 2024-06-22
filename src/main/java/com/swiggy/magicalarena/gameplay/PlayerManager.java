@@ -9,20 +9,20 @@ import java.util.Map;
 public enum PlayerManager {
     INSTANCE;
     private final Map<Integer, Player> players;
-    private int playerCount = 0;
 
     PlayerManager() {
         players = new HashMap<>();
     }
 
     public int getPlayerCount() {
-        return playerCount;
+        return players.size();
     }
 
     public void registerPlayer(Player player) {
-        player.setId(++playerCount);
-        players.put(playerCount, player);
-        System.out.println("Player #" + playerCount + " has been registered.");
+        int idToAssign = getPlayerCount() + 1;
+        player.setId(idToAssign);
+        players.put(idToAssign, player);
+        System.out.println("Player #" + idToAssign + " has been registered.");
     }
 
     public void initiateMatchBetween(int id1, int id2) {
