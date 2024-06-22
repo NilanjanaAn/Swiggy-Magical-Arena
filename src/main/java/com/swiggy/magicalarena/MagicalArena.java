@@ -2,7 +2,6 @@ package com.swiggy.magicalarena;
 
 import com.swiggy.magicalarena.gameplay.Player;
 import com.swiggy.magicalarena.gameplay.PlayerManager;
-import com.swiggy.magicalarena.util.RandomPlayerIdSelector;
 
 public class MagicalArena {
     private static final PlayerManager playerManager = PlayerManager.INSTANCE;
@@ -26,13 +25,17 @@ public class MagicalArena {
     }
 
     private static void initiateFightBetweenAnyTwoPlayers() {
-        int playerId1 = RandomPlayerIdSelector.selectId(playerManager.getPlayerCount());
+        int playerId1 = selectRandomId();
         int playerId2;
         do {
-            playerId2 = RandomPlayerIdSelector.selectId(playerManager.getPlayerCount());
+            playerId2 = selectRandomId();
         } while (playerId1 == playerId2);
 
-        System.out.println("\n=== Initiating match between Player #"+playerId1+" and Player #"+playerId2+" ===");
+        System.out.println("\n=== Initiating match between Player #" + playerId1 + " and Player #" + playerId2 + " ===");
         playerManager.initiateMatchBetween(playerId1, playerId2);
+    }
+
+    private static int selectRandomId() {
+        return (int) Math.ceil(Math.random() * playerManager.getPlayerCount());
     }
 }

@@ -1,8 +1,8 @@
 package com.swiggy.magicalarena.util;
 
-public class Dice implements RandomNumberGenerator {
+public class Dice {
 
     public static int rollDice() {
-        return random.nextInt(6) + 1;
+        return (int) Math.ceil(Math.random() * 6);
     }
 }
