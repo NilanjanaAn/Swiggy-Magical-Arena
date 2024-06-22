@@ -1,4 +1,4 @@
-package com.swiggy.magicalarena;
+package com.swiggy.magicalarena.gameplay;
 
 public class Player {
     private int id;

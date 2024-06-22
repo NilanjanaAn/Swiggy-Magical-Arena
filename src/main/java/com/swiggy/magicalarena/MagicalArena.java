@@ -1,5 +1,7 @@
 package com.swiggy.magicalarena;
 
+import com.swiggy.magicalarena.gameplay.Player;
+import com.swiggy.magicalarena.gameplay.PlayerManager;
 import com.swiggy.magicalarena.util.RandomPlayerIdSelector;
 
 public class MagicalArena {
