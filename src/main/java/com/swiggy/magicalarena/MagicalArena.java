@@ -2,8 +2,12 @@ package com.swiggy.magicalarena;
 
 import com.swiggy.magicalarena.gameplay.Player;
 import com.swiggy.magicalarena.gameplay.PlayerManager;
+
 import java.util.Optional;
 
+/**
+ * The top level Magical Arena entity
+ */
 public class MagicalArena {
     private static final PlayerManager playerManager = PlayerManager.INSTANCE;
 
@@ -25,6 +29,9 @@ public class MagicalArena {
         initiateMatchBetweenAnyTwoPlayers();
     }
 
+    /**
+     * This method selects any two players from the pool of registered players and asks the Player Manager to initiate a match between them.
+     */
     private static void initiateMatchBetweenAnyTwoPlayers() {
         int playerId1 = selectRandomId();
         int playerId2;
@@ -41,6 +48,9 @@ public class MagicalArena {
 
     }
 
+    /**
+     * @return A randomly selected integer value representing the ID of a registered player
+     */
     private static int selectRandomId() {
         return (int) Math.ceil(Math.random() * playerManager.getPlayerCount());
     }

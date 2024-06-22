@@ -2,6 +2,9 @@ package com.swiggy.magicalarena.gameplay;
 
 import com.swiggy.magicalarena.util.Dice;
 
+/**
+ * An entity representing a match between two players
+ */
 public class Match {
     Player player1;
     Player player2;
@@ -11,6 +14,12 @@ public class Match {
         this.player2 = player2;
     }
 
+    /**
+     * This method conducts a match between the players after checking if the matchup is valid.
+     * As per the rules of the game, the player with lower health must attack first.
+     *
+     * @return The winning player if a match was conducted, otherwise, a null value
+     */
     public Player conductMatch() {
         showInitialPlayerStats();
         if (checkValidMatchup())
@@ -18,6 +27,13 @@ public class Match {
         return null;
     }
 
+    /**
+     * This method simulates the turn-by-turn gameplay during the match until one player dies.
+     * The attacker and defender are swapped after each turn.
+     *
+     * @param player1sTurn A true or false value representing whether player1 shall attack first
+     * @return The winning player
+     */
     private Player simulateMatch(boolean player1sTurn) {
         if (player1sTurn)
             System.out.println("\n>> Player #" + player1.getId() + " attacks first.");
@@ -33,6 +49,16 @@ public class Match {
         return player1.isAlive() ? player1 : player2;
     }
 
+    /**
+     * This method uses the rules of the game to find the outcome of a single turn.
+     * Attacking player rolls the attacking dice and the defending player rolls the defending dice.
+     * The "attack" value multiplied by the outcome of the attacking dice roll is the damage created by the attacker.
+     * The defender "strength" value, multiplied by the outcome of the defending dice is the damage defended by the defender.
+     * Whatever damage created by attacker which is in excess of the damage defended by the defender will reduce the "health" of the defender.
+     *
+     * @param attacker The player who will attack during this turn
+     * @param defender The player who will defend during this turn
+     */
     private void turn(Player attacker, Player defender) {
         int attackerRoll = Dice.rollDice();
         int defenderRoll = Dice.rollDice();
@@ -53,6 +79,13 @@ public class Match {
         }
     }
 
+    /**
+     * This method validates the players' stats before the initiation of a match.
+     * It ensures that both players are alive.
+     * It also ensures that at least one of the players is able to inflict damage on the other, preventing an infinite fruitless battle.
+     *
+     * @return A true or false value representing whether the match can be conducted
+     */
     private boolean checkValidMatchup() {
         if (!player1.isAlive() || !player2.isAlive()) {
             System.out.println("\nOne or both players selected are not alive.");
@@ -67,6 +100,9 @@ public class Match {
         return true;
     }
 
+    /**
+     * This method displays the initial stats of the two players before the match.
+     */
     private void showInitialPlayerStats() {
         System.out.println("\nStats\n-----------------------------------------");
         System.out.format("Player #%-15s\tPlayer #%-15s\n", player1.getId(), player2.getId());
