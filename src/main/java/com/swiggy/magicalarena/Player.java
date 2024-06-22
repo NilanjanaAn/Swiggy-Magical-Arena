@@ -1,6 +1,7 @@
 package com.swiggy.magicalarena;
 
 public class Player {
+    private int id;
     private int health;
     private int strength;
     private int attack;
@@ -12,6 +13,14 @@ public class Player {
         this.health = health;
         this.strength = strength;
         this.attack = attack;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getHealth() {
