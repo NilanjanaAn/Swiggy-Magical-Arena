@@ -22,7 +22,7 @@ class MatchTest {
 
     @Test
     void testConductMatchInvalidPlayersCannotInflictDamage() {
-        player1 = new Player(100, 30, 1);
+        player1 = new Player(100, 32, 1);
         player1.setId(1);
         player2 = new Player(100, 6, 5);
         player2.setId(2);

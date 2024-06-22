@@ -45,7 +45,6 @@ public class MagicalArena {
             System.out.println("\nThe winner is Player #" + winner.get().getId() + "!");
         else
             System.out.println("\nSorry, the match could not be conducted.");
-
     }
 
     /**
